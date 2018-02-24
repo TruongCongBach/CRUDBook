@@ -1,0 +1,18 @@
+<html>
+<head>
+
+    <title><%=title%></title>
+
+</head>
+<body>
+<h2>Hello page edit book</h2>
+    <form method="post" action="/books/editbooks/<%=data[0].id%>" >
+        Title :<input type="text" name="inputTitle" value="<%=data[0].title%>">
+        Auther :<input type="text" name="inputAuthor" value="<%=data[0].author%>">
+        Pulishor :<input type="text" name="inputPublisher" value="<%=data[0].publisher%>">
+        Price :<input type="text" name="inputPrice" value="<%=data[0].price%>">
+        <input type="submit" name="submit" value="Save" >
+    </form>
+</body>
+
+</html>

@@ -1,11 +1,10 @@
 let express = require('express');
 let routes = require('./routes');
-let http = require('http');
 let path = require('path');
 
 let books = require('./routes/books');
 //load customers route
-let app = express();
+const app = express();
 let connection  = require('express-myconnection');
 let mysql = require('mysql');
 
@@ -19,23 +18,14 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 
-app.use(express.static(path.join(__dirname, 'public')));
-
-
-// development only
-if ('development' == app.get('env')) {
-    app.use(express.errorHandler());
-}
-
-
 app.use(
 
     connection(mysql,{
-        host: 'localhost', //'localhost',
+        host: 'localhost',
         user: 'root',
         password : '1',
         database:'CRUDBook'
-    }) //or single
+    })
 
 );
 
@@ -53,6 +43,6 @@ app.post('/books/editbooks/:id',books.edit);
 app.use(app.router);
 
 
-http.createServer(app).listen(app.get('port'), function(){
+app.listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));
 });
